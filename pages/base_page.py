@@ -1,10 +1,11 @@
 from pyshadow.main import Shadow
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from browser import Browser
 
 class Base_page(Browser):
-
+	ACCEPT_BUTTON = (By.XPATH, '//button[@data-testid="uc-accept-all-button]')
 	def accept_cookies(self):
 		try:
 			shadow_element = Shadow(self.chrome)
