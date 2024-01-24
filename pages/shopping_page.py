@@ -1,20 +1,33 @@
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-import time
-
+from pyshadow.main import Shadow
+from selenium.webdriver import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.core import driver
 
-lista_produse = ["DIOR Forever No-Transfer 24h Wear Matte Foundation", "IT Cosmetics Heavenly Luxe Complexion Brush #7", "Prada Paradoxe Eau de Parfum Refillable"]
+from pages.base_page import Base_page
+class Home_page(Base_page):
+    ACCEPT_BUTTON = (By.XPATH,'//button[@data-testid="uc-accept-all-button]')
+    def accept_cookies(self):
+        try:
+            shadow_element = Shadow(self.chrome)
+            shadow_element.get_shadow_element(*self.ACCEPT_BUTTON)
+        except:
+            pass
+    LOGIN_LINK = "https://www.douglas.ro/account"
+    LOGIN_TO_THE_APPLICATION = "https://www.douglas.ro/account"
+    SEARCH_BOX = (By.NAME, "//input[@type='search']")
+    ADD_IN_SHOPPING_CART = (By.XPATH, "//input[@id='personalFirstName']")
 
-for produs in lista_produse:
-    search_box = driver.find_element("id", "//input[@type='search']")
-    search_box.clear()
-    search_box.send_keys(produs)
-    search_box.send_keys(Keys.RETURN)
+    def login_to_the_application(self):
+        account_dropdown = WebDriverWait(self.chrome, 3).until(EC.presence_of_element_located(self.ACCOUNT_DROPDOWN))
+        account_dropdown.click()
+        self.chrome.find_element(*self.LOGIN_LINK).click()
 
-    time.sleep(3)
+    def search_box(self):
+        search_box = WebDriverWait(self.chrome, 3).until(EC.presence_of_element_located(self.SEARCH_BOX))
+        search_box.send_keys(search_box)
 
-    add_to_cart_button = driver.find_element("xpath", "//button[@class='btn btn-block btn-buy e-btn-buy'']")
-    add_to_cart_button.click()
-
-driver.quit()
+    def add_in_shopping_cart(self):
+        add_in_shopping_cart = WebDriverWait(self.chrome, 3).until(EC.presence_of_element_located(self.ADD_IN_SHOPPING_CART))
+        add_in_shopping_cart.send_keys(add_in_shopping_cart)

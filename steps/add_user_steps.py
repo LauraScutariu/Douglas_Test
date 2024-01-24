@@ -19,10 +19,6 @@ def step_impl(context):
 
 @when('The user inserts invalid name and invalid password')
 def step_impl(context,name,password):
-		try:
-				context.home_page.login_of_the_application()
-		except:
-				pass
 		context.home_page.insert_name(name)
 		context.home_page.insert_password(password)
 
