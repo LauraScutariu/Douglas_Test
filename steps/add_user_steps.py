@@ -22,9 +22,9 @@ def step_impl(context,name,password):
 		context.home_page.insert_name(name)
 		context.home_page.insert_password(password)
 
-@when('The user clicks on the next button')
-def step_impl(context):
-		context.home_page.click_next_button()
+# @when('The user clicks on the next button')
+# def step_impl(context):
+# 		context.home_page.click_next_button()
 
 @then('The user receives error message and cannot create his account')
 def step_impl(context):
