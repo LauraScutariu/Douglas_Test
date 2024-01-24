@@ -3,6 +3,7 @@ from behave import *
 @given("The user is on the Douglas login page")
 def step_impl(context):
 		context.login_page.navigate_to_homepage()
+		context.login_page.accept_cookies()
 @when('The user inserts valid information on the username and password fields')
 # @when('The user inserts valid username "username" and valid password "password"')
 def step_impl(context):

@@ -1,9 +1,9 @@
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+from seleniumbase import Driver
 
 class Browser():
 
-		chrome = webdriver.Chrome(executable_path=ChromeDriverManager().install())
+		chrome = Driver(browser='chrome', headless=False)
 
 		def maximise_window(self):
 				self.chrome.maximize_window()

@@ -1,6 +1,7 @@
 import time
 
 import self
+from pyshadow.main import Shadow
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.expected_conditions import presence_of_element_located
 from selenium.webdriver.support.wait import WebDriverWait
@@ -14,10 +15,17 @@ class Login_page(Base_page):
 		PASSWORD = (By.XPATH,"//input[@id='loginpasswordfield']")
 		LOGIN_BUTTON = (By.CSS_SELECTOR,"'//div[@class='login-submit']")
 		LOGIN_ERROR_MESSAGE = (By.CSS_SELECTOR,'div.douglas-login-error i + p')
+		ACCEPT_BUTTON = (By.XPATH, '//button[@data-testid="uc-accept-all-button"]')
 
 		def navigate_to_homepage(self):
 				self.chrome.get("https://www.douglas.ro/account/login")
 
+		def accept_cookies(self):
+			try:
+				shadow_element = Shadow(self.chrome)
+				shadow_element.get_shadow_element(*self.ACCEPT_BUTTON)
+			except:
+				pass
 		def insert_username(self,user_name="email_for_tests@yahoo.com"):
 				username = WebDriverWait(self.chrome,10).until(EC.presence_of_element_located(self.USERNAME))
 				username.send_keys(user_name)
