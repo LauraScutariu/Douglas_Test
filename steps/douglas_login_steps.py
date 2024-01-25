@@ -6,14 +6,6 @@ def step_impl(context):
 	context.login_page.navigate_to_homepage()
 	context.login_page.accept_cookies()
 
-
-@when('The user inserts valid information on the username and password fields')
-# @when('The user inserts valid username "username" and valid password "password"')
-def step_impl(context):
-	context.login_page.insert_username()
-	context.login_page.insert_password()
-
-
 # context.login_page.insert_username(username)
 # context.login_page.insert_password(password)
 

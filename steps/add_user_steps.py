@@ -7,26 +7,20 @@ def step_impl(context):
 	context.home_page.accept_cookies()
 
 
-@when('The user inserts valid information on the username and password fields')
-def step_impl(context):
-	context.home_page.insert_name()
-	context.home_page.insert_password()
+@when('The user inserts valid information on the username "{username}" and password "{password}" fields')
+def step_impl(context, username, password):
+	context.add_user_page.insert_name(username)
+	context.add_user_page.insert_password(password)
 
 
 @when('The user clicks on the next button')
 def step_impl(context):
-	context.home_page.click_next_button()
+	context.add_user_page.click_next_button()
 
 
 @then('The user create his account')
 def step_impl(context):
-	context.home_page.check_current_url()
-
-
-@when('The user inserts invalid name and invalid password')
-def step_impl(context, name, password):
-	context.home_page.insert_name(name)
-	context.home_page.insert_password(password)
+	context.add_user_page.check_current_url()
 
 
 # @when('The user clicks on the next button')
@@ -35,4 +29,4 @@ def step_impl(context, name, password):
 
 @then('The user receives error message and cannot create his account')
 def step_impl(context):
-	context.home_page.check_current_url()
+	context.add_user_page.check_current_url()

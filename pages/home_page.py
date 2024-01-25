@@ -7,6 +7,9 @@ from pages.base_page import Base_page
 
 class Home_page(Base_page):
 
+	def navigate_to_homepage(self):
+		self.chrome.get("https://www.douglas.ro/account/login")
+
 	def accept_cookies(self):
 		try:
 			shadow_element = Shadow(self.chrome)

@@ -10,7 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from pages.base_page import Base_page
 
 
-class Home_page(Base_page):
+class Add_user_page(Base_page):
 	CLIENT_TYPE = (By.CSS_SELECTOR, "//div[@class='e-custom-select__trigger']")
 	CLIENT_GEN = (By.CSS_SELECTOR, "//span[@class='text']")
 	FIRSTNAME = (By.XPATH, "//input[@id='personalFirstName']")
@@ -55,17 +55,17 @@ class Home_page(Base_page):
 		firstname = WebDriverWait(self.chrome, 3).until(EC.presence_of_element_located(self.FIRSTNAME))
 		firstname.send_keys(firstname)
 
-	def insert_name(self, insert_name = "Popescu"):
-		name = WebDriverWait(self.chrome, 3).until(EC.presence_of_element_located(self.NAME))
-		name.send_keys(name)
+	def insert_name(self, insert_name):
+		WebDriverWait(self.chrome, 3).until(EC.presence_of_element_located(self.NAME))
+		self.chrome.find_element(*self.NAME).send_keys(insert_name)
 
 	def email(self, email="ioana.popescu@yahoo.com"):
 		email = WebDriverWait(self.chrome, 3).until(EC.presence_of_element_located(self.EMAIL))
 		email.send_keys(email)
 
-	def password(self, password="12345678"):
-		password = WebDriverWait(self.chrome, 3).until(EC.presence_of_element_located(self.PASSWORD))
-		password.send_keys(password)
+	def insert_password(self, password):
+		WebDriverWait(self.chrome, 3).until(EC.presence_of_element_located(self.PASSWORD))
+		self.chrome.find_element(*self.PASSWORD).send_keys(password)
 
 	def street_and_number(self, street_and_number="12"):
 		street_and_number = WebDriverWait(self.chrome, 3).until(EC.presence_of_element_located(self.STREET_AND_NUMBER))
@@ -111,7 +111,9 @@ class Home_page(Base_page):
 		phone_number = WebDriverWait(self.chrome, 3).until(EC.presence_of_element_located(self.PHONE_NUMBER))
 		phone_number.send_keys(phone_number)
 
+
 	def click_next_button(self):
+		WebDriverWait(self.chrome, 15).until(EC.element_to_be_clickable(self.NEXT_BUTTON))
 		self.chrome.find_element(*self.NEXT_BUTTON).click()
 
 	def check_current_url(self):

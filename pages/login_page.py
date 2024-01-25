@@ -17,8 +17,6 @@ class Login_page(Base_page):
 	LOGIN_ERROR_MESSAGE = (By.CSS_SELECTOR, 'div.douglas-login-error i + p')
 	ACCEPT_BUTTON = (By.XPATH, '//button[@data-testid="uc-accept-all-button"]')
 
-	def navigate_to_homepage(self):
-		self.chrome.get("https://www.douglas.ro/account/login")
 
 	def accept_cookies(self):
 		try:

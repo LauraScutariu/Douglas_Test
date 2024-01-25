@@ -10,6 +10,10 @@ from pages.base_page import Base_page
 
 class Home_page(Base_page):
     ACCEPT_BUTTON = (By.XPATH, '//button[@data-testid="uc-accept-all-button]')
+    LOGIN_LINK = "https://www.douglas.ro/account"
+    LOGIN_TO_THE_APPLICATION = "https://www.douglas.ro/account"
+    SEARCH_BOX = (By.NAME, "//input[@type='search']")
+    ADD_IN_SHOPPING_CART = (By.XPATH, "//input[@id='personalFirstName']")
 
 def accept_cookies(self):
         try:
@@ -17,12 +21,6 @@ def accept_cookies(self):
             shadow_element.get_shadow_element(*self.ACCEPT_BUTTON)
         except:
             pass
-
-    LOGIN_LINK = "https://www.douglas.ro/account"
-    LOGIN_TO_THE_APPLICATION = "https://www.douglas.ro/account"
-    SEARCH_BOX = (By.NAME, "//input[@type='search']")
-    ADD_IN_SHOPPING_CART = (By.XPATH, "//input[@id='personalFirstName']")
-
 
 def login_to_the_application(self):
         account_dropdown = WebDriverWait(self.chrome, 3).until(EC.presence_of_element_located(self.ACCOUNT_DROPDOWN))
