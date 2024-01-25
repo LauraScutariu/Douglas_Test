@@ -23,4 +23,3 @@ class Home_page(Base_page):
 			account_dropdown = WebDriverWait(self.chrome, 10).until(
 				EC.presence_of_element_located(self.ACCOUNT_DROPDOWN))
 			account_dropdown.click()
-			self.chrome.find_element(*self.LOGOUT_LINK).click()
