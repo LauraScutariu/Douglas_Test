@@ -1,6 +1,3 @@
-import time
-
-import self
 from pyshadow.main import Shadow
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.expected_conditions import presence_of_element_located
